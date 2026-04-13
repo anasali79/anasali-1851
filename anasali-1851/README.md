@@ -9,6 +9,9 @@ A production-ready NestJS backend with authentication, role-based access control
 - **JWT Authentication**: Secure login and signup with JWT.
 - **Cookie Support**: Tokens are automatically stored in an `accessToken` cookie.
 - **Role-Based Access Control**: `ADMIN` and `BRAND` roles.
+- **Brand Management**: Complete CRUD for brands (Admin only).
+- **Audit Tracking**: Automatic tracking of `createdBy` and `updatedBy` for brands.
+- **Database Migrations**: Version-controlled schema updates using TypeORM.
 - **Auto-Seeding**: Automatic admin creation on startup.
 
 ---
@@ -75,6 +78,58 @@ A production-ready NestJS backend with authentication, role-based access control
 - **Method**: `GET`
 - **Access**: Admin Only
 - **Description**: Returns a list of all users in the system.
+
+---
+
+### 3. Brand Management (Admin Only)
+
+#### **Create Brand**
+- **URL**: `/brands`
+- **Method**: `POST`
+- **Access**: Admin Only
+- **Body**:
+```json
+{
+  "name": "Brand Name",
+  "description": "Optional description",
+  "logoUrl": "https://example.com/logo.png"
+}
+```
+- **Description**: Creates a new brand and links the current admin as the creator.
+
+#### **List Brands**
+- **URL**: `/brands?page=1&limit=10`
+- **Method**: `GET`
+- **Access**: Admin Only
+- **Query Params**:
+  - `page`: default `1`
+  - `limit`: default `10`
+- **Description**: Returns a paginated list of all brands.
+
+#### **Get Brand Detail**
+- **URL**: `/brands/:id`
+- **Method**: `GET`
+- **Access**: Admin Only
+- **Description**: Returns details of a specific brand by its ID.
+
+#### **Update Brand**
+- **URL**: `/brands/:id`
+- **Method**: `PATCH`
+- **Access**: Admin Only
+- **Body**:
+```json
+{
+  "name": "Updated Brand Name",
+  "description": "Updated description"
+}
+```
+- **Description**: Updates brand details and links the current admin as the last updater.
+
+#### **Delete Brand**
+- **URL**: `/brands/:id`
+- **Method**: `DELETE`
+- **Access**: Admin Only
+- **Description**: Permanently deletes a brand from the system.
 
 ---
 
