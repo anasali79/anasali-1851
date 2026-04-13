@@ -5,9 +5,13 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Index,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
-import { Role } from '../../../common/enums/role.enum.js';
+import { Role } from '../../../common/enums/role.enum';
 import { Exclude } from 'class-transformer';
+
+import { Brand } from '../../brands/entities/brand.entity';
 
 @Entity('users')
 export class User {
@@ -34,6 +38,13 @@ export class User {
 
   @Column({ type: 'boolean', default: true })
   isActive: boolean;
+
+  @Column({ name: 'brand_id', type: 'int', nullable: true })
+  brandId: number;
+
+  @ManyToOne(() => Brand, (brand) => brand.users)
+  @JoinColumn({ name: 'brand_id' })
+  brand: Brand;
 
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;

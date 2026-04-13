@@ -6,6 +6,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { SeedsModule } from './modules/seeds/seeds.module';
 import databaseConfig from './config/database.config';
 import jwtConfig from './config/jwt.config';
+import { BrandsModule } from './modules/brands/brands.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import jwtConfig from './config/jwt.config';
     UsersModule,
     AuthModule,
     SeedsModule,
+    BrandsModule,
   ],
 })
 export class AppModule { }
